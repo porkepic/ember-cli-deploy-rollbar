@@ -100,7 +100,7 @@ module.exports = {
           snippetContent = snippetContent.replace('ROLLBAR_JSFILE_URI', rollbarFileURI);
 
           var rollbarSnippet = template(htmlContent)({
-            rollbarConfig: JSON.stringify(rollbarConfig),
+            rollbarConfig: rollbarConfig,
             rollbarSnippet: snippetContent
           });
 
