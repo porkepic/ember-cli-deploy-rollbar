@@ -78,7 +78,7 @@ module.exports = {
             environment: this.readConfig('environment'),
             ignoredMessages: this.readConfig('ignoredMessages'),
             reportLevel: this.readConfig('reportLevel'),
-            checkIgnore: this.readConfig('checkIgnore'),
+            checkIgnore: "checkIgnoreReplace",
             payload: {
               client: {
                 javascript: {
@@ -89,6 +89,7 @@ module.exports = {
               }
             }
           };
+          rollbarConfig.checkIgnore = this.readConfig('checkIgnore'),
 
           var rollbarFileURI = this.readConfig('rollbarFileURI');
 
@@ -100,7 +101,7 @@ module.exports = {
           snippetContent = snippetContent.replace('ROLLBAR_JSFILE_URI', rollbarFileURI);
 
           var rollbarSnippet = template(htmlContent)({
-            rollbarConfig: rollbarConfig,
+            rollbarConfig: JSON.stringify(rollbarConfig).replace( "checkIgnoreReplace", this.readConfig('checkIgnore').toString() ),
             rollbarSnippet: snippetContent
           });
 
