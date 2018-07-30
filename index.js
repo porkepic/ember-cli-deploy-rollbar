@@ -89,7 +89,6 @@ module.exports = {
               }
             }
           };
-          rollbarConfig.checkIgnore = this.readConfig('checkIgnore'),
 
           var rollbarFileURI = this.readConfig('rollbarFileURI');
 
@@ -101,7 +100,7 @@ module.exports = {
           snippetContent = snippetContent.replace('ROLLBAR_JSFILE_URI', rollbarFileURI);
 
           var rollbarSnippet = template(htmlContent)({
-            rollbarConfig: JSON.stringify(rollbarConfig).replace( "checkIgnoreReplace", this.readConfig('checkIgnore').toString() ),
+            rollbarConfig: JSON.stringify(rollbarConfig).replace( "\"checkIgnoreReplace\"", this.readConfig('checkIgnore').toString() ),
             rollbarSnippet: snippetContent
           });
 
